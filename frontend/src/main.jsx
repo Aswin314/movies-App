@@ -13,6 +13,7 @@ import Home from "./pages/Home.jsx";
 import PrivateRoute from "./pages/Auth/PrivateRoute.jsx";
 import Profile from "./pages/User/Profile.jsx";
 import AdminRoutes from "./pages/Admin/adminRoutes.jsx";
+import Genrelist from "./pages/Admin/Genrelist.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
