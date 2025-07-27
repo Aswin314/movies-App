@@ -38,4 +38,26 @@ const updateGenre = asyncHandler(async (req, res) => {
         res.status(500).json({ message: "Server Error" });
     }
 })
-export { CreateGenre, updateGenre };
+const deleteGenre = asyncHandler(async (req, res) => {
+    const { id } = req.params
+    const Removed = await Genre.findByIdAndDelete(id)
+    res.json("item Removed", Removed)
+})
+const Genrelist = asyncHandler(async (req, res) => {
+    try {
+        const genres = await Genre.find({});
+        res.json(genres);
+    } catch (error) {
+        console.log(error);
+        res.status(500).json({ message: "Server Error" });
+    }
+});
+const Onegenre = asyncHandler(async (req, res) => {
+    const { id } = req.params;
+    const genre = await Genre.findById(id);
+    if (!genre) {
+        return res.status(404).json({ message: "Genre not found" });
+    }
+    res.json(genre);
+});
+export { CreateGenre, updateGenre, deleteGenre, Genrelist, Onegenre };
