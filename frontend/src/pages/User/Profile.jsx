@@ -6,7 +6,7 @@ import Loader from "../../Components/Loader";
 import { setCredentials } from "../../redux/features/auth/authSlice";
 import { toast } from "react-toastify";
 import { useProfileMutation } from "../../redux/api/user";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 
 const Profile = () => {
   const [username, setUsername] = useState("");
@@ -18,9 +18,7 @@ const Profile = () => {
   const [updateProfile, { isLoading: loadingUpdateProfile }] =
     useProfileMutation();
   const navigate = useNavigate();
-  const { search } = useLocation();
-  const sp = new URLSearchParams(search);
-  const redirect = sp.get("redirect") || "/";
+
   useEffect(() => {
     setUsername(userInfo.username);
     setEmail(userInfo.email);
@@ -39,7 +37,7 @@ const Profile = () => {
         }).unwrap();
         dispatch(setCredentials({ ...res }));
         toast.success("Profile updated successfully.");
-        navigate(redirect);
+        navigate("/");
       } catch (err) {
         console.log(err);
         toast.error(err?.data?.message || err.error || "An error occurred");

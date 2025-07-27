@@ -3,6 +3,7 @@ import cookieParser from "cookie-parser";
 import ConnectDB from "./config/db.js";
 import dotenv from "dotenv";
 import UserRoutes from "./routes/UserRoutes.js";
+import Genreroutes from "./routes/GenreRoutes.js";
 
 const app = express();
 app.use(express.json());
@@ -13,6 +14,7 @@ dotenv.config();
 ConnectDB();
 const PORT = process.env.PORT || 3000;
 app.use("/api/vi/users", UserRoutes);
+app.use("/api/vi/genres", Genreroutes);
 
 app.listen(PORT, () => {
   console.log(`http://localhost:${PORT}`);
