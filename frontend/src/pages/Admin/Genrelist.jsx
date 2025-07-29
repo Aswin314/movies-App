@@ -48,7 +48,7 @@ const Genrelist = () => {
             </div>
           ))}
         </div>
-        <Modal isOpen={modalvisible} onclose={() => setSelectedGenre(false)}>
+        <Modal isOpen={modalvisible} onclose={() => setmodalvisible(false)}>
           <Genreform
             value={updatedname}
             setvalue={(value) => setUpdatedName(value)}
