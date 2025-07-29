@@ -23,13 +23,11 @@ export const genreApiSlice = apiSlice.injectEndpoints({
                 method: "DELETE"
             })
         }),
-        Genrelist: builder.query({
-            query: () => ({
-                url: GENRES_URL,
-                method: "GET"
-            })
+        fetchGenres: builder.query({
+            query: () => `${GENRES_URL}/genres`,
         }),
+    }),
 
-    })
 })
-export const { useCreateGenreMutation, useUpdateGenreMutation, useDeleteGenreMutation, useGenrelistQuery } = genreApiSlice;
+
+export const { useCreateGenreMutation, useUpdateGenreMutation, useDeleteGenreMutation, useFetchGenresQuery } = genreApiSlice;

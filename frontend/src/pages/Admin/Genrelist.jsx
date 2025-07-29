@@ -4,17 +4,19 @@ import {
   useCreateGenreMutation,
   useUpdateGenreMutation,
   useDeleteGenreMutation,
-  useGenrelistQuery,
+  useFetchGenresQuery,
+  
 } from "../../redux/api/GenreSlice";
 import { toast } from "react-toastify";
 import Genreform from "../../Components/Genreform";
 import Modal from "../../Components/Modal";
 const Genrelist = () => {
-  const { data: genres, refresh } = useGenrelistQuery();
-  const [name, setname] = useState("");
-  const [selectedgenre, setSelectedGenre] = useState(null);
-  const [updatedname, setUpdatedName] = useState("");
-  const [modalvisible, setmodalvisible] = useState(false);
+  const { data: genres, refetch } = useFetchGenresQuery();
+  const [name, setName] = useState("");
+  const [selectedGenre, setSelectedGenre] = useState(null);
+  const [updatingName, setUpdatingName] = useState("");
+  const [modalVisible, setModalVisible] = useState(false);
+
   const [createGenre] = useCreateGenreMutation();
   const [updateGenre] = useUpdateGenreMutation();
   const [deleteGenre] = useDeleteGenreMutation();
@@ -25,36 +27,38 @@ const Genrelist = () => {
         <h1 className="h-12">Manage Genres</h1>
         <Genreform
           value={name}
-          setvalue={setvalue}
-          handleSubmit={HandlecreateGenre}
+          setValue={setName}
+          // handleSubmit={handleCreateGenre}
         />
+
+        <br />
+
         <div className="flex flex-wrap">
           {genres?.map((genre) => (
-            <div
-              key={genre._id}
-              className="bg-gray-100 p-3 m-2 rounded-lg shadow-md w-[20rem]"
-            >
-              <h2 className="text-lg font-semibold">{genre.name}</h2>
+            <div key={genre._id}>
               <button
+                className="bg-white border border-teal-500 text-teal-500 py-2 px-4 rounded-lg m-3 hover:bg-teal-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50"
                 onClick={() => {
-                  setSelectedGenre(genre);
-                  setUpdatedName(genre.name);
-                  setmodalvisible(true);
+                  {
+                    setModalVisible(true);
+                    setSelectedGenre(genre);
+                    setUpdatingName(genre.name);
+                  }
                 }}
-                className="bg-blue-500 text-white py-1 px-3 rounded-lg hover:bg-blue-600"
               >
                 {genre.name}
               </button>
             </div>
           ))}
         </div>
-        <Modal isOpen={modalvisible} onclose={() => setmodalvisible(false)}>
+
+        <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
           <Genreform
-            value={updatedname}
-            setvalue={(value) => setUpdatedName(value)}
-            habndleSubmit={handleUpdateGenre}
-            buttonText="Update Genre"
-            handleDelete={handleDeleteGenre}
+            value={updatingName}
+            setValue={(value) => setUpdatingName(value)}
+            // handleSubmit={handleUpdateGenre}
+            buttonText="Update"
+            // handleDelete={handleDeleteGenre}
           />
         </Modal>
       </div>

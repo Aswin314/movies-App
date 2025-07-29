@@ -15,7 +15,7 @@ const Genreform = ({
           className="py--3 px-4 border rounded-lg w-[60rem]"
           placeholder="Wtite Genre"
           value={value}
-          onAbort={(e) => setvalue(e.target.value)}
+          onChange={(e) => setvalue(e.target.value)}
         />
         <div className="flex justify-between">
           <button className="bg-teal-500 text-white py-2 px-4 rounded-lg hover:bg-teal-600 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-opacity-50">

@@ -101,7 +101,7 @@ const Navigation = () => {
                   </li>
                   <li>
                     <Link
-                      to="/admin/movies/Genre"
+                      to="/admin/movies/genre"
                       className="block px-4 py-2 hover:bg-gray-100"
                     >
                       Genre
