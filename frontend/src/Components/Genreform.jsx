@@ -3,13 +3,13 @@ import React from "react";
 const Genreform = ({
   value,
   setvalue,
-  habndleSubmit,
+  handleSubmit,
   buttonText = "submit",
   handleDelete,
 }) => {
   return (
     <div className="p-3">
-      <form onSubmit={habndleSubmit}>
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           className="py--3 px-4 border rounded-lg w-[60rem]"

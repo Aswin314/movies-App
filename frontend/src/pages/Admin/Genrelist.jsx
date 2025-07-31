@@ -5,7 +5,6 @@ import {
   useUpdateGenreMutation,
   useDeleteGenreMutation,
   useFetchGenresQuery,
-  
 } from "../../redux/api/GenreSlice";
 import { toast } from "react-toastify";
 import Genreform from "../../Components/Genreform";
@@ -20,15 +19,64 @@ const Genrelist = () => {
   const [createGenre] = useCreateGenreMutation();
   const [updateGenre] = useUpdateGenreMutation();
   const [deleteGenre] = useDeleteGenreMutation();
-
+  const handleCreateGenre = async (e) => {
+    e.preventDefault();
+    if (!name) {
+      toast.error("Please enter a genre name");
+      return;
+    }
+    try {
+      const Result = await createGenre({ name }).unwrap();
+      toast.success(`${Result} Genre created successfully`);
+      setName("");
+      refetch();
+    } catch (error) {
+      toast.error("Failed to create genre");
+    }
+  };
+  const handleUpdateGenre = async (e) => {
+    e.preventDefault();
+    if (!updatingName) {
+      toast.error("Please enter a genre name");
+      return;
+    }
+    try {
+      const Result = await updateGenre({
+        id: selectedGenre._id,
+        updatedGenre: { name: updatingName },
+      }).unwrap();
+      toast.success(`${Result.name} Genre updated successfully`);
+      setModalVisible(false);
+      setUpdatingName("");
+      setSelectedGenre(null);
+      refetch();
+    } catch (error) {
+      toast.error("Failed to update genre");
+    }
+  };
+  const handleDeleteGenre = async () => {
+    if (!selectedGenre) {
+      toast.error("No genre selected for deletion");
+      return;
+    }
+    try {
+      await deleteGenre(selectedGenre._id).unwrap();
+      toast.success(`${selectedGenre.name} Genre deleted successfully`);
+      setModalVisible(false);
+      setSelectedGenre(null);
+      refetch();
+    } catch (error) {
+      toast.error("Failed to delete genre");
+    }
+  };
   return (
     <div className="ml-[10rem] flex flex-col md:flex-row">
       <div className="md:w-3/4 p-3">
         <h1 className="h-12">Manage Genres</h1>
         <Genreform
           value={name}
-          setValue={setName}
-          // handleSubmit={handleCreateGenre}
+          setvalue={setName}
+          handleSubmit={handleCreateGenre}
         />
 
         <br />
@@ -55,10 +103,10 @@ const Genrelist = () => {
         <Modal isOpen={modalVisible} onClose={() => setModalVisible(false)}>
           <Genreform
             value={updatingName}
-            setValue={(value) => setUpdatingName(value)}
-            // handleSubmit={handleUpdateGenre}
+            setvalue={(value) => setUpdatingName(value)}
+            handleSubmit={handleUpdateGenre}
             buttonText="Update"
-            // handleDelete={handleDeleteGenre}
+            handleDelete={handleDeleteGenre}
           />
         </Modal>
       </div>
