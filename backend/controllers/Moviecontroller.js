@@ -2,15 +2,7 @@ import Movie from "../models/Movies.js";
 
 export const createmovie = async (req, res) => {
     try {
-        const { name, image, year, genre, detail, cast } = req.body;
-        const movie = new Movie({
-            name,
-            image,
-            year,
-            genre,
-            detail,
-            cast
-        });
+        const movie = new Movie(req.body);
         const savedMovie = await movie.save();
         res.status(201).json(savedMovie);
     }
