@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 const { ObjectId } = mongoose.Schema
 const reviewSchema = new mongoose.Schema({
     name: {
-        type: ObjectId,
+        type: String,
         required: true,
     },
     rating: {
