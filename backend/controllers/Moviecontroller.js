@@ -157,3 +157,12 @@ export const topmovies = async (req, res) => {
         res.status(404).json({ error: error.message })
     }
 }
+export const randommovies = async (req, res) => {
+    try {
+        const random = await Movie.aggregate([{ $sample: { size: 10 } }])
+        res.json(random)
+    }
+    catch (error) {
+        res.status(500).json("random not found", error)
+    }
+}

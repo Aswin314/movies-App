@@ -1,7 +1,7 @@
 import express from "express";
 import { Authenticate, AuthorizeAdmin } from "../middlewares/authhandler.js";
 import checkid from "../middlewares/checkid.js";
-import { createmovie, getmovie, updatemovie, deletemovie, onemovie, moviereview, deletecomment, newmovies,topmovies } from "../controllers/Moviecontroller.js";
+import { createmovie, getmovie, updatemovie, deletemovie, onemovie, moviereview, deletecomment, newmovies,topmovies,randommovies } from "../controllers/Moviecontroller.js";
 
 const Moviesroutes = express.Router();
 
@@ -15,6 +15,7 @@ Moviesroutes.get("/onemovie/:id", Authenticate, AuthorizeAdmin, onemovie)
 Moviesroutes.post("/allmovie", Authenticate, AuthorizeAdmin, getmovie)
 Moviesroutes.get("/newmovies", newmovies)
 Moviesroutes.get("/topmovies", topmovies)
+Moviesroutes.get("/randommovies", randommovies)
 // private routes
 Moviesroutes.post("/:id/moviereview", Authenticate, checkid, moviereview)
 export default Moviesroutes;
