@@ -86,9 +86,7 @@ export const moviereview = async (req, res) => {
             }
             movie.reviews.push(review)
             movie.numberofreviews = movie.reviews.length
-            movie.rating =
-                movie.reviews.reduce((acc, item) => item.rating + acc, 0) /
-                movie.reviews.length;
+            movie.rating = movie.reviews.reduce((acc, item) => item.rating + acc, 0) / movie.reviews.length;
             await movie.save()
             res.status(201).json("review added")
 
