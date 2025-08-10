@@ -7,9 +7,9 @@ export const MoviesSlice = apiSlice.injectEndpoints({
             query: () => `${MOVIES_URL}/allmovies`
 
         }),
-        createnewmovie: builder.mutation({
+        createMovie: builder.mutation({
             query: (newmovie) => ({
-                url: `${MOVIES_URL}/createmovie`,
+                url: `${MOVIES_URL}/addmovie`,
                 method: "POST",
                 body: newmovie
             })
@@ -43,28 +43,29 @@ export const MoviesSlice = apiSlice.injectEndpoints({
         }),
         specificmovie: builder.query({
             query: ({ id }) => `${MOVIES_URL}/specificmovie/${id}`
-        })
-    }),
-    uploadimage: builder.mutation({
-        query: (formdata) => ({
-            url: `${UPLOAD_URL}`,
-            method: "POST",
-            body: formdata
-        })
-    }),
-    newmovie: builder.query({
-        query: () => ({
-            url: `${MOVIES_URL}/newmovie`
-        })
-    }),
-    topmovie: builder.query({
-        query: () => ({
-            url: `${MOVIES_URL}topmovie`
-        })
-    }),
-    randomMovies: builder.query({
-        query: () => `${MOVIES_URL}/randommovies`,
-    }),
+        }),
+        uploadImage: builder.mutation({
+            query: (formdata) => ({
+                url: `${UPLOAD_URL}`,
+                method: "POST",
+                body: formdata
+            })
+        }),
+        newmovie: builder.query({
+            query: () => ({
+                url: `${MOVIES_URL}/newmovie`
+            })
+        }),
+        topmovie: builder.query({
+            query: () => ({
+                url: `${MOVIES_URL}topmovie`
+            })
+        }),
+        randomMovies: builder.query({
+            query: () => `${MOVIES_URL}/randommovies`,
+        }),
+    })
+
 })
 
 export const {
