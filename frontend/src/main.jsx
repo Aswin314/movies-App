@@ -28,6 +28,7 @@ const router = createBrowserRouter(
       <Route path="" element={<AdminRoutes />}>
         <Route path="/admin/movies/genre" element={<Genrelist />} />
         <Route path="/admin/movies/addmovie" element={<Createmovie />} />
+        <Route path="/admin/movies/addmovie" element={<Createmovie />} />
       </Route>
     </Route>
   )
