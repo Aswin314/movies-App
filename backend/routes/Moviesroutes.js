@@ -12,7 +12,7 @@ Moviesroutes.delete("/deletemovie/:id", Authenticate, AuthorizeAdmin, deletemovi
 Moviesroutes.delete("/deletecomment", Authenticate, AuthorizeAdmin, deletecomment)
 Moviesroutes.get("/onemovie/:id", Authenticate, AuthorizeAdmin, onemovie)
 //public route
-Moviesroutes.post("/allmovie", Authenticate, AuthorizeAdmin, getmovie)
+Moviesroutes.get("/adminmovielist", Authenticate, AuthorizeAdmin, getmovie)
 Moviesroutes.get("/newmovies", newmovies)
 Moviesroutes.get("/topmovies", topmovies)
 Moviesroutes.get("/randommovies", randommovies)

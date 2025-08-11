@@ -3,8 +3,8 @@ import { MOVIES_URL, UPLOAD_URL } from "../constants";
 
 export const MoviesSlice = apiSlice.injectEndpoints({
     endpoints: (builder) => ({
-        getallmovies: builder.query({
-            query: () => `${MOVIES_URL}/allmovies`
+        allMovies: builder.query({
+            query: () => `${MOVIES_URL}/adminmovielist`
 
         }),
         createMovie: builder.mutation({
@@ -14,14 +14,14 @@ export const MoviesSlice = apiSlice.injectEndpoints({
                 body: newmovie
             })
         }),
-        updatemovie: builder.mutation({
+        updateMovie: builder.mutation({
             query: ({ id, updatemovie }) => ({
                 url: `${MOVIES_URL}/updatemovie/${id}`,
                 method: "PUT",
                 body: updatemovie
             })
         }),
-        addmoviereview: builder.mutation({
+        addmovieReview: builder.mutation({
             query: ({ id, rating, comment }) => ({
                 url: `${MOVIES_URL}/${id}/reviews`,
                 method: "POST",
@@ -29,20 +29,20 @@ export const MoviesSlice = apiSlice.injectEndpoints({
 
             })
         }),
-        deletecomment: builder.mutation({
+        deleteComment: builder.mutation({
             query: ({ movieid, reviewid }) => ({
                 url: `${MOVIES_URL}/deletecomment`,
                 body: { movieid, reviewid }
             })
         }),
-        deletemovie: builder.mutation({
-            query: ({ id }) => ({
+        deleteMovie: builder.mutation({
+            query: ( id ) => ({
                 url: `${MOVIES_URL}/deletemovie/${id}`,
                 method: "DELETE"
             })
         }),
-        specificmovie: builder.query({
-            query: ({ id }) => `${MOVIES_URL}/specificmovie/${id}`
+       getSpecificMovie: builder.query({
+            query: (id) => `${MOVIES_URL}/onemovie/${id}`
         }),
         uploadImage: builder.mutation({
             query: (formdata) => ({
@@ -58,7 +58,7 @@ export const MoviesSlice = apiSlice.injectEndpoints({
         }),
         topmovie: builder.query({
             query: () => ({
-                url: `${MOVIES_URL}topmovie`
+                url: `${MOVIES_URL}/topmovie`
             })
         }),
         randomMovies: builder.query({
@@ -74,7 +74,7 @@ export const {
     useUpdateMovieMutation,
     useAddMovieReviewMutation,
     useDeleteCommentMutation,
-    usetSpecificMovieQuery,
+    useGetSpecificMovieQuery,
     useUploadImageMutation,
     useDeleteMovieMutation,
     //
