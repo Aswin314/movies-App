@@ -73,13 +73,28 @@ const Updatemovie = () => {
                     image: uploadedimagepath,
                 },
             });
-            Navigate("/movies")
+            console.log(movieData);
+
+            toast.success("movie updated")
+            // Navigate("/movies")
         }
         catch (error) {
             console.log("Error");
 
         }
 
+    }
+    const handleDeleteMovie = async () => {
+        try {
+            toast.success("Delete succeed")
+            await deletemovie(id)
+            Navigate("/movies")
+        }
+        catch (error) {
+            console.log("Error");
+            toast.error("Delete error ")
+
+        }
     }
     return (
         <div className='container flex justify-center items-center mt-4'>
@@ -163,7 +178,7 @@ const Updatemovie = () => {
                 </button>
                 <button
                     type="button"
-                    // onClick={handleDeleteMovie}
+                    onClick={handleDeleteMovie}
                     className="bg-red-600 text-white px-4 py-2 rounded m-3 cursor-pointer"
                     disabled={isupdatingmovie || isuploadingimage}
                 >

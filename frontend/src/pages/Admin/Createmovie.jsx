@@ -102,7 +102,7 @@ const CreateMovie = () => {
           image: uploadedImagePath,
         });
 
-        navigate("/admin/movies-list");
+        navigate("/admin/movies/adminmovielist");
 
         setMovieData({
           name: "",
