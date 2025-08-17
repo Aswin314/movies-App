@@ -21,7 +21,7 @@ export const MoviesSlice = apiSlice.injectEndpoints({
                 body: updatedMovie
             })
         }),
-        addmovieReview: builder.mutation({
+        addMovieReview: builder.mutation({
             query: ({ id, rating, comment }) => ({
                 url: `${MOVIES_URL}/${id}/reviews`,
                 method: "POST",
