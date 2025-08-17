@@ -17,11 +17,13 @@ import Genrelist from "./pages/Admin/Genrelist.jsx";
 import Createmovie from "./pages/Admin/Createmovie.jsx";
 import AdminmovieList from "./pages/Admin/AdminmovieList.jsx";
 import Updatemovie from "./pages/Admin/Updatemovie.jsx";
+import Allmovies from "./pages/Movies/Allmovies.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App />}>
       <Route index={true} path="/" element={<Home />} />
+      <Route path="/movies" element={<Allmovies />} />
       <Route path="/Login" element={<Login />} />
       <Route path="/Register" element={<Register />} />
       <Route path="" element={<PrivateRoute />}>

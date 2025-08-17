@@ -36,12 +36,12 @@ export const MoviesSlice = apiSlice.injectEndpoints({
             })
         }),
         deleteMovie: builder.mutation({
-            query: ( id ) => ({
+            query: (id) => ({
                 url: `${MOVIES_URL}/deletemovie/${id}`,
                 method: "DELETE"
             })
         }),
-       getSpecificMovie: builder.query({
+        getSpecificMovie: builder.query({
             query: (id) => `${MOVIES_URL}/onemovie/${id}`
         }),
         uploadImage: builder.mutation({
@@ -51,12 +51,10 @@ export const MoviesSlice = apiSlice.injectEndpoints({
                 body: formdata
             })
         }),
-        newMovie: builder.query({
-            query: () => ({
-                url: `${MOVIES_URL}/newmovie`
-            })
+        newMovies: builder.query({
+            query: () => `${MOVIES_URL}/newmovies`
         }),
-        topmovie: builder.query({
+        topMovies: builder.query({
             query: () => ({
                 url: `${MOVIES_URL}/topmovie`
             })
@@ -78,7 +76,7 @@ export const {
     useUploadImageMutation,
     useDeleteMovieMutation,
     //
-    useNewMovieQuery,
+    useNewMoviesQuery,
     useTopMoviesQuery,
     useRandomMoviesQuery,
 } = MoviesSlice;

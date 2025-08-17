@@ -1,11 +1,27 @@
-import React from 'react'
+import React from "react";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+import Moviecard from "../pages/Movies/Moviecard";
 
-const SliderUtil = () => {
-  return (
-    <div>
-        
-    </div>
-  )
-}
 
-export default SliderUtil
+const SliderUtil = ({ data }) => {
+    const settings = {
+        dots: true,
+        infinite: true,
+        speed: 500,
+        slidesToShow: 4,
+        slidesToScroll: 2,
+    };
+
+
+    return (
+        <Slider {...settings}>
+            {data?.map((movie) => (
+                <Moviecard key={movie._id} movie={movie} />
+            ))}
+        </Slider>
+    );
+};
+
+export default SliderUtil;

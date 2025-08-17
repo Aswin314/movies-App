@@ -1,8 +1,10 @@
 import React from 'react'
-// import { useNewMovieQuery } from '../redux/api/MovieSlice'
 import { Link } from "react-router-dom"
+
+import { useNewMoviesQuery } from '../../redux/api/MovieSlice'
+import SliderUtil from '../../Components/SliderUtil'
 const Header = () => {
-    // const { data } = useNewMovieQuery()
+    const { data } = useNewMoviesQuery()
     return (
         <div className="flex flex-col mt-[2rem] ml-[2rem] md:flex-row justify-between items-center md:items-start">
             <nav className="w-full md:w-[10rem] ml-0 md:ml-2 mb-4 md:mb-0">
@@ -18,10 +20,11 @@ const Header = () => {
                 >
                     Browse Movies
                 </Link>
-                <div className="w-full md:w-[80%] mr-0 md:mr-2">
-                    <SliderUtil data={data} />
-                </div>
+
             </nav>
+            <div className="w-full md:w-[80%] mr-0 md:mr-2">
+                <SliderUtil data={data} />
+            </div>
         </div>
     )
 }
