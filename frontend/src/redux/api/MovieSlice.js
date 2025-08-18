@@ -23,16 +23,17 @@ export const MoviesSlice = apiSlice.injectEndpoints({
         }),
         addMovieReview: builder.mutation({
             query: ({ id, rating, comment }) => ({
-                url: `${MOVIES_URL}/${id}/reviews`,
+                url: `${MOVIES_URL}/${id}/moviereview`,
                 method: "POST",
                 body: { rating, id, comment }
 
             })
         }),
         deleteComment: builder.mutation({
-            query: ({ movieid, reviewid }) => ({
+            query: ({ id, reviewId }) => ({
                 url: `${MOVIES_URL}/deletecomment`,
-                body: { movieid, reviewid }
+                method: "DELETE",
+                body: { id, reviewId }
             })
         }),
         deleteMovie: builder.mutation({

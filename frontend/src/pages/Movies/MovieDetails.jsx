@@ -11,13 +11,14 @@ const MovieDetails = () => {
     const [comment, setComment] = useState("");
     const { data: movie, refetch } = useGetSpecificMovieQuery(movieId);
     const { userInfo } = useSelector((state) => state.auth);
-    const [createReview, { isLoading: loadingMovieReview }] =
+    const [addMovieReview, { isLoading: loadingMovieReview }] =
         useAddMovieReviewMutation();
     const submitHandler = async (e) => {
         e.preventDefault();
-
+        console.log(comment);
+        
         try {
-            await createReview({
+            await addMovieReview({
                 id: movieId,
                 rating,
                 comment,
