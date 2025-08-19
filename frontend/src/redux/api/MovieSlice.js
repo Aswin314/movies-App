@@ -63,6 +63,7 @@ export const MoviesSlice = apiSlice.injectEndpoints({
         randomMovies: builder.query({
             query: () => `${MOVIES_URL}/randommovies`,
         }),
+        
     })
 
 })
