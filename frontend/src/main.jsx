@@ -12,7 +12,6 @@ import Register from "./pages/Auth/Register.jsx";
 import Home from "./pages/Home.jsx";
 import PrivateRoute from "./pages/Auth/PrivateRoute.jsx";
 import Profile from "./pages/User/Profile.jsx";
-import AdminRoutes from "./pages/Admin/adminRoutes.jsx";
 import Genrelist from "./pages/Admin/Genrelist.jsx";
 import Createmovie from "./pages/Admin/Createmovie.jsx";
 import AdminmovieList from "./pages/Admin/AdminmovieList.jsx";
@@ -21,6 +20,7 @@ import Allmovies from "./pages/Movies/Allmovies.jsx";
 import MovieDetails from "./pages/Movies/MovieDetails.jsx";
 import AllComments from "./pages/Admin/AllComments.jsx";
 import AdminDashboard from "./pages/Admin/dashboard/AdminDashbaoard.jsx";
+import AdminRoutes from "./pages/Admin/adminRoutes.jsx";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -35,7 +35,10 @@ const router = createBrowserRouter(
       <Route path="" element={<AdminRoutes />}>
         <Route path="/admin/movies/genre" element={<Genrelist />} />
         <Route path="/admin/movies/addmovie" element={<Createmovie />} />
-        <Route path="/admin/movies/adminmovielist" element={<AdminmovieList />} />
+        <Route
+          path="/admin/movies/adminmovielist"
+          element={<AdminmovieList />}
+        />
         <Route path="/admin/movies/updatemovie/:id" element={<Updatemovie />} />
         <Route path="/movies/:id/" element={<MovieDetails />} />
         <Route path="/admin/movies/comments" element={<AllComments />} />
