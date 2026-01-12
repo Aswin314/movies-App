@@ -1,7 +1,8 @@
 import bcrypt from "bcryptjs";
 import GenerateToken from "../utils/CreateToken.js";
 import asyncmiddleware from "../middlewares/AsyncMiddleware.js";
-import User from "../models/USer.js";
+import User from "../models/User.js";
+
 
 const CreateUser = asyncmiddleware(async (req, res) => {
   const { username, email, password } = req.body;
